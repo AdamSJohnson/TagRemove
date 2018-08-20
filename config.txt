@@ -1,7 +1,7 @@
 TestDir
 TestTargetDir,TestTargetDir2
-\((\d+)\)
-3
+false
+false
 [TestTag]
 (TestTag)
 (1234 1090)
