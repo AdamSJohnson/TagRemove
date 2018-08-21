@@ -1,4 +1,4 @@
-**Welcome**
+# Welcome
 
 Tag remover is a way to remove tags from file names in given directories
 
@@ -18,3 +18,23 @@ Anyway setup a config file like this:
 ```
 
 Easy Peasy
+
+# RUNNING
+**WARNING: THIS CANNOT BE REVERSED**
+
+Assming this is your folder structure
+```
+TopLevel
+|-config.txt
+|-TagRemover.py
+|-TargetFolder
+| |-Sub Dir 1
+| | |-Files
+| |-Sub Dir 2
+| | |-Files
+...
+```
+And assuming you have the config.txt file configured properly run the command 
+`python3 TagRemover.py`
+Any files that cannot be relabeled with seasons/episodes will be printed to the console.
+This is caused by having 2 or more numbers valid for the episode number
