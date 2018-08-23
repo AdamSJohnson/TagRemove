@@ -38,3 +38,19 @@ And assuming you have the config.txt file configured properly run the command
 `python3 TagRemover.py`
 Any files that cannot be relabeled with seasons/episodes will be printed to the console.
 This is caused by having 2 or more numbers valid for the episode number
+
+# Tips
+
+**Setting the wrong season number**
+
+If you get into this situation where the Season number was put in wrong you can run the same  utility with a modified config.txt
+i.e. You set the season to 2 but need it to be 1.
+
+```
+# Keep the same
+# Keep the same
+(\d+)
+1
+# Keep the same
+S02E
+```
