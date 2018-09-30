@@ -34,21 +34,35 @@ def main():
                 
                 for tag in tags:
                     file = file.replace(tag, '')
+
+                #Because some extensions have numbers in them the file will be split
+                #here and then rebuilt
+                splittyThing = file.split('.')
+                fileWithoutExtension = splittyThing[0]
+                extension = splittyThing[1]
+
                 numbers = "false"
                 if( pattern != 'false' and season != 'false'):
-                    numbers = pattern.findall(file)
+                    numbers = pattern.findall(fileWithoutExtension)
                     s = "{:02}".format( int( season))
                     e = "{:02}".format(int(numbers[0]))
                     
-                    file = file.replace(numbers[0], 'S%sE%s' % (s,e )).strip()
+                    fileWithoutExtension = fileWithoutExtension.replace(numbers[0], 'S%sE%s' % (s,e )).strip()
+                #recombine the file and extension with extra trailing spaces trimmed
+                file = '%s.%s' % (fileWithoutExtension.strip(),extension)
+
                 replaceFile =  '%s%s%s' % (path,SLASH, file)
                 
                 #our always remove list is just ()[] just since they are a pain
                 for x in ALWAYS_REMOVE:
                     replaceFile = replaceFile.replace(x, '')
+                
+                
                 if(numbers != "false" and len(numbers) > 1):
                     print("Could not determine episode number")
                     print(fullPath)
+                    print(replaceFile)
+                    print(numbers)
                     print("Modify by hand!!!")
                 else:
                     os.rename(fullPath, replaceFile)
