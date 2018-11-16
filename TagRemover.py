@@ -34,15 +34,21 @@ def main():
                 
                 for tag in tags:
                     file = file.replace(tag, '')
-
+                print(file)
+                #our always remove list is just ()[] just since they are a pain
+                for x in ALWAYS_REMOVE:
+                    file = file.replace(x, '')
+                print(file)
                 #Because some extensions have numbers in them the file will be split
                 #here and then rebuilt
                 splittyThing = file.split('.')
-                fileWithoutExtension = splittyThing[0]
-                extension = splittyThing[1]
+                
+                extension = splittyThing.pop()
+                fileWithoutExtension = '.'.join(splittyThing)
 
                 numbers = "false"
                 if( pattern != 'false' and season != 'false'):
+                    print(fileWithoutExtension)
                     numbers = pattern.findall(fileWithoutExtension)
                     s = "{:02}".format( int( season))
                     e = "{:02}".format(int(numbers[0]))
@@ -53,9 +59,7 @@ def main():
 
                 replaceFile =  '%s%s%s' % (path,SLASH, file)
                 
-                #our always remove list is just ()[] just since they are a pain
-                for x in ALWAYS_REMOVE:
-                    replaceFile = replaceFile.replace(x, '')
+                
                 
                 
                 if(numbers != "false" and len(numbers) > 1):
