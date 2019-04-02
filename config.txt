@@ -2,6 +2,6 @@ TestDir
 TestTargetDir,TestTargetDir2
 (\d+)
 3
-\[([a-zA-Z0-9\s]*)\]
+\(.*?\)
 (TestTag)
 (1234 1090)
