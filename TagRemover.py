@@ -28,12 +28,20 @@ def main():
         for path, subdirs, files in os.walk(dir):
             for file in files:
                 fullPath = '%s%s%s' % (path,SLASH, file)
+                #To make it easier to process the file replace sqare brackets with round bois
+                file = file.replace('[', '(')
+                file = file.replace(']',')')
+                #Use our round boi killer to remove all tags
                 matchedRegTags = regTag.findall(file)
+
+                #this is probably really bad oh well
                 for matchedRegTag in matchedRegTags:
                     file = file.replace(matchedRegTag, '')
                 
+                #any extra pieces of text to remove before finding the number
                 for tag in tags:
                     file = file.replace(tag, '')
+
                 print(file)
                 #our always remove list is just ()[] just since they are a pain
                 for x in ALWAYS_REMOVE:
@@ -58,10 +66,7 @@ def main():
                 file = '%s.%s' % (fileWithoutExtension.strip(),extension)
 
                 replaceFile =  '%s%s%s' % (path,SLASH, file)
-                
-                
-                
-                
+
                 if(numbers != "false" and len(numbers) > 1):
                     print("Could not determine episode number")
                     print(fullPath)
@@ -70,9 +75,6 @@ def main():
                     print("Modify by hand!!!")
                 else:
                     os.rename(fullPath, replaceFile)
-
-
-
 
 if __name__ == '__main__':
     main()
